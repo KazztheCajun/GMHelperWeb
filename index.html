@@ -1,0 +1,71 @@
+<head>
+    <link rel="icon" href="assets/favicon.png">
+	<title>AAron's Protfolio</title>
+
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="styles/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="styles/bootstrap/bootstrap-icons.css">
+
+	<!-- Animate CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="styles/styles.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+
+    <!-- Custom Scripts-->
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- Input Fields-->
+        <div class="row p-2">
+            <!-- Player list-->
+            <div class="col">
+                <ul>
+                    <li><input id="p1" type="text" value="Player Name"><input id="pi1" type="text" value="Initiative"></li>
+                    <li><input id="p2" type="text" value="Player Name"><input id="pi2" type="text" value="Initiative"></li>
+                    <li><input id="p3" type="text" value="Player Name"><input id="pi3" type="text" value="Initiative"></li>
+                    <li><input id="p4" type="text" value="Player Name"><input id="pi4" type="text" value="Initiative"></li>
+                    <li><input id="p5" type="text" value="Player Name"><input id="pi5" type="text" value="Initiative"></li>
+                    <li><input id="p6" type="text" value="Player Name"><input id="pi6" type="text" value="Initiative"></li>
+                    <li><input id="p7" type="text" value="Player Name"><input id="pi7" type="text" value="Initiative"></li>
+                    <li><input id="p8" type="text" value="Player Name"><input id="pi8" type="text" value="Initiative"></li>
+                </ul>
+            </div>
+
+            <!-- Monster list-->
+            <div class="col">
+                <ul>
+                    <li><input id="m1" type="text" value="Monster Name"><input id="mi1" type="text" value="Initiative"><input type="text" value="HP"></li>
+                    <li><input id="m2" type="text" value="Monster Name"><input id="mi2" type="text" value="Initiative"><input type="text" value="HP"></li>
+                    <li><input id="m3" type="text" value="Monster Name"><input id="mi3" type="text" value="Initiative"><input type="text" value="HP"></li>
+                    <li><input id="m4" type="text" value="Monster Name"><input id="mi4" type="text" value="Initiative"><input type="text" value="HP"></li>
+                    <li><input id="m5" type="text" value="Monster Name"><input id="mi5" type="text" value="Initiative"><input type="text" value="HP"></li>
+                    <li><input id="m6" type="text" value="Monster Name"><input id="mi6" type="text" value="Initiative"><input type="text" value="HP"></li>
+                    <li><input id="m7" type="text" value="Monster Name"><input id="mi7" type="text" value="Initiative"><input type="text" value="HP"></li>
+                    <li><input id="m8" type="text" value="Monster Name"><input id="mi8" type="text" value="Initiative"><input type="text" value="HP"></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Input Buttons-->
+        <div class="row p-2">
+            <input class="col" type="button" value="Start Combat">
+            <input class="col" type="button" value="Update Combat">
+            <input class="col" type="button" value="End Combat">
+        </div>
+        <hr>
+        <!-- Canvas element-->
+        <div class="row col-3 text-center justify-content-center">
+            <h2>Initiative List:</h2>
+            <canvas id="combat" class="canvas-combat m-2"></canvas>
+        </div>
+    </div>
+    <!-- Bootstrap Bundle with Popper -->
+	<script src="scripts/bootstrap/bootstrap.bundle.min.js"></script>	
+</body>
