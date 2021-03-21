@@ -11,7 +11,7 @@ class Encounter
         this.#initList = document.getElementById("initList");
         this.#round = 0;
         this.populateList();
-        this.#creatureList.sort(Creature.compareTo);
+        this.#creatureList.sort(Creature.compare);
         console.log(this.#creatureList);
         this.#current = this.#creatureList[0];
         this.drawList();   
