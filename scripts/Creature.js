@@ -21,7 +21,7 @@ class Creature
         return this.#name;
     }
 
-    static compareTo(a, b)
+    static compare(a, b)
     {
         return b.getInit() - a.getInit();   
     }
