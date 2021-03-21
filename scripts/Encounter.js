@@ -2,45 +2,71 @@
 class Encounter
 {
     #creatureList;
+    #initList;
     #round;
+    #current;
 
     constructor()
     {
+        this.#initList = document.getElementById("initList");
         this.#round = 0;
-        this.populateList();   
+        this.populateList();
+        this.#creatureList.sort(Creature.compareTo);
+        console.log(this.#creatureList);
+        this.#current = this.#creatureList[0];
+        this.drawList();   
     }
 
     populateList()
     {
         this.#creatureList = [];
-        for (x = 1; x <= 9; x++)
+        this.clearList();
+        for (let x = 1; x <= 8; x++)
         {
-            let mName = document.getElementById(`m${x}`).value;
-            let mInit = document.getElementById(`mi${x}`).value;
-            let pName = document.getElementById(`p${x}`).value;
-            let pInit = document.getElementById(`pi${x}`).value;
+            let mName = document.getElementById("m" + `${x}`).value;
+            let mInit = document.getElementById("mi" + `${x}`).value;
+            let pName = document.getElementById("p" + `${x}`).value;
+            let pInit = document.getElementById("pi" + `${x}`).value;
 
-            if (validateInit(mInit) && validateName(mName))
+            if (this.validateInit(mInit) && this.validateName(mName))
             {
                 this.#creatureList.push(new Creature(mName, mInit, false));
             }
 
-            if (validateInit(pInit) && validateName(pName))
+            if (this.validateInit(pInit) && this.validateName(pName))
             {
                 this.#creatureList.push(new Creature(pName, pInit, true));
             }
         }
+        console.log(this.#creatureList);
     }
 
-    sortList()
+    drawList()
     {
-        this.#creatureList.sort(function(a,b){return a.init - b.init});
+        for (let i = 0; i < this.#creatureList.length; i++)
+        {
+            let t = this.#creatureList[i]
+            if (this.#current === t)
+            {
+                this.#initList.innerHTML += "<li>" + `${t.toString()}` + "    <-- </li>";
+            }
+            else
+            {
+                this.#initList.innerHTML += "<li>" + `${t.toString()}` + "</li>";
+            }
+            
+        }
+    }
+
+    clearList()
+    {
+        this.#initList.innerHTML = "";
     }
 
     validateName(name)
     {
-        // returns true if string is neither blank nor the default value
-        return name != "" || name != "Monster";
+        // returns true if string is neither blank nor a default value
+        return name != "" || name != "Monster" || name != "Player";
     }
 
     validateInit(init)

@@ -11,4 +11,19 @@ class Creature
         this.#isPlayer = p;
     }
 
+    getInit()
+    {
+        return this.#init;
+    }
+
+    toString()
+    {
+        return this.#name;
+    }
+
+    static compareTo(a, b)
+    {
+        return b.getInit() - a.getInit();   
+    }
+
 }

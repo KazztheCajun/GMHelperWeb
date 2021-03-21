@@ -17,7 +17,17 @@
 	<link rel="stylesheet" href="styles/styles.css">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 
-    <!-- Custom Scripts-->
+    <!-- Custom Scripts--> 
+    <script>
+        function startCombat()
+        {
+            let e = new Encounter();
+        }
+        function endCombat()
+        {
+            document.getElementById("initList").innerHTML = "";
+        }
+    </script>
 
 </head>
 
@@ -59,17 +69,22 @@
         </div>
         <!-- Input Buttons-->
         <div class="row p-2">
-            <input class="col" type="button" value="Start Combat">
+            <input class="col" type="button" value="Start Combat" onclick="startCombat()">
             <input class="col" type="button" value="Update Combat">
-            <input class="col" type="button" value="End Combat">
+            <input class="col" type="button" value="End Combat" onclick="endCombat()">
         </div>
         <hr>
-        <!-- Canvas element-->
+        <!-- Init List element-->
         <div class="row col-3 text-center justify-content-center">
             <h2>Initiative List:</h2>
-            <canvas id="combat" class="canvas-combat"></canvas>
+            <div class="init-box">
+                <ol id="initList"></ol>
+            </div>
         </div>
     </div>
     <!-- Bootstrap Bundle with Popper -->
-	<script src="scripts/bootstrap/bootstrap.bundle.min.js"></script>	
+	<script src="scripts/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="scripts/Creature.js"></script>
+    <script src="scripts/Encounter.js"></script>
+
 </body>
