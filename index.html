@@ -1,6 +1,6 @@
 <head>
     <link rel="icon" href="assets/favicon.png">
-	<title>AAron's Protfolio</title>
+	<title>GM Helper</title>
 
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -26,31 +26,35 @@
         <!-- Input Fields-->
         <div class="row p-2">
             <!-- Player list-->
-            <div class="col">
+            <div class="col-4">
                 <ul>
-                    <li><input id="p1" type="text" value="Player Name"><input id="pi1" type="text" value="Initiative"></li>
-                    <li><input id="p2" type="text" value="Player Name"><input id="pi2" type="text" value="Initiative"></li>
-                    <li><input id="p3" type="text" value="Player Name"><input id="pi3" type="text" value="Initiative"></li>
-                    <li><input id="p4" type="text" value="Player Name"><input id="pi4" type="text" value="Initiative"></li>
-                    <li><input id="p5" type="text" value="Player Name"><input id="pi5" type="text" value="Initiative"></li>
-                    <li><input id="p6" type="text" value="Player Name"><input id="pi6" type="text" value="Initiative"></li>
-                    <li><input id="p7" type="text" value="Player Name"><input id="pi7" type="text" value="Initiative"></li>
-                    <li><input id="p8" type="text" value="Player Name"><input id="pi8" type="text" value="Initiative"></li>
+                    <li><input id="p1" type="text" value="Player" size="40"><input id="pi1" type="text" value="Initiative" size="6"></li>
+                    <li><input id="p2" type="text" value="Player" size="40"><input id="pi2" type="text" value="Initiative" size="6"></li>
+                    <li><input id="p3" type="text" value="Player" size="40"><input id="pi3" type="text" value="Initiative" size="6"></li>
+                    <li><input id="p4" type="text" value="Player" size="40"><input id="pi4" type="text" value="Initiative" size="6"></li>
+                    <li><input id="p5" type="text" value="Player" size="40"><input id="pi5" type="text" value="Initiative" size="6"></li>
+                    <li><input id="p6" type="text" value="Player" size="40"><input id="pi6" type="text" value="Initiative" size="6"></li>
+                    <li><input id="p7" type="text" value="Player" size="40"><input id="pi7" type="text" value="Initiative" size="6"></li>
+                    <li><input id="p8" type="text" value="Player" size="40"><input id="pi8" type="text" value="Initiative" size="6"></li>
                 </ul>
             </div>
 
             <!-- Monster list-->
-            <div class="col">
+            <div class="col-4">
                 <ul>
-                    <li><input id="m1" type="text" value="Monster Name"><input id="mi1" type="text" value="Initiative"><input type="text" value="HP"></li>
-                    <li><input id="m2" type="text" value="Monster Name"><input id="mi2" type="text" value="Initiative"><input type="text" value="HP"></li>
-                    <li><input id="m3" type="text" value="Monster Name"><input id="mi3" type="text" value="Initiative"><input type="text" value="HP"></li>
-                    <li><input id="m4" type="text" value="Monster Name"><input id="mi4" type="text" value="Initiative"><input type="text" value="HP"></li>
-                    <li><input id="m5" type="text" value="Monster Name"><input id="mi5" type="text" value="Initiative"><input type="text" value="HP"></li>
-                    <li><input id="m6" type="text" value="Monster Name"><input id="mi6" type="text" value="Initiative"><input type="text" value="HP"></li>
-                    <li><input id="m7" type="text" value="Monster Name"><input id="mi7" type="text" value="Initiative"><input type="text" value="HP"></li>
-                    <li><input id="m8" type="text" value="Monster Name"><input id="mi8" type="text" value="Initiative"><input type="text" value="HP"></li>
+                    <li><input id="m1" type="text" value="Monster" size="30"><input id="mi1" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
+                    <li><input id="m2" type="text" value="Monster" size="30"><input id="mi2" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
+                    <li><input id="m3" type="text" value="Monster" size="30"><input id="mi3" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
+                    <li><input id="m4" type="text" value="Monster" size="30"><input id="mi4" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
+                    <li><input id="m5" type="text" value="Monster" size="30"><input id="mi5" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
+                    <li><input id="m6" type="text" value="Monster" size="30"><input id="mi6" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
+                    <li><input id="m7" type="text" value="Monster" size="30"><input id="mi7" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
+                    <li><input id="m8" type="text" value="Monster" size="30"><input id="mi8" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
                 </ul>
+            </div>
+
+            <div class="col">
+                Something here --------------------------------------------------------------------------------------------------------
             </div>
         </div>
         <!-- Input Buttons-->
@@ -63,7 +67,7 @@
         <!-- Canvas element-->
         <div class="row col-3 text-center justify-content-center">
             <h2>Initiative List:</h2>
-            <canvas id="combat" class="canvas-combat m-2"></canvas>
+            <canvas id="combat" class="canvas-combat"></canvas>
         </div>
     </div>
     <!-- Bootstrap Bundle with Popper -->
