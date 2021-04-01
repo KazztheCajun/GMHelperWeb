@@ -1,14 +1,15 @@
+let monsterList = [];
+let playerList = [];
+const initList = document.getElementById("initList");;
 
 class Encounter
 {
     #creatureList;
-    #initList;
     #round;
     #current;
 
     constructor()
     {
-        this.#initList = document.getElementById("initList");
         this.#round = 0;
         this.populateList();
         this.#creatureList.sort(Creature.compare);
@@ -21,24 +22,16 @@ class Encounter
     {
         this.#creatureList = [];
         this.clearList();
-        for (let x = 1; x <= 8; x++)
-        {
-            let mName = document.getElementById("m" + `${x}`).value;
-            let mInit = document.getElementById("mi" + `${x}`).value;
-            let pName = document.getElementById("p" + `${x}`).value;
-            let pInit = document.getElementById("pi" + `${x}`).value;
-
-            if (this.validateInit(mInit) && this.validateName(mName))
-            {
-                this.#creatureList.push(new Creature(mName, mInit, false));
-            }
-
-            if (this.validateInit(pInit) && this.validateName(pName))
-            {
-                this.#creatureList.push(new Creature(pName, pInit, true));
-            }
-        }
+        this.getFeildValues();
+        monsterList.forEach(this.addCreature, this);
+        playerList.forEach(this.addCreature, this);
         console.log(this.#creatureList);
+    }
+
+    addCreature = function(element)
+    {
+        console.log(element);
+        this.#creatureList.push(element);
     }
 
     drawList()
@@ -48,11 +41,11 @@ class Encounter
             let t = this.#creatureList[i]
             if (this.#current === t)
             {
-                this.#initList.innerHTML += "<li>" + `${t.toString()}` + "    <-- </li>";
+                initList.innerHTML += "<li>" + `${t.toString()}` + "    <-- </li>";
             }
             else
             {
-                this.#initList.innerHTML += "<li>" + `${t.toString()}` + "</li>";
+                initList.innerHTML += "<li>" + `${t.toString()}` + "</li>";
             }
             
         }
@@ -60,7 +53,26 @@ class Encounter
 
     clearList()
     {
-        this.#initList.innerHTML = "";
+        initList.innerHTML = "";
+    }
+
+    getFeildValues()
+    {
+        for (let x = 0; x < 8; x++)
+        {
+            let m = this.buildCreature(document.getElementById("m" + `${x+1}`).value, document.getElementById("mi" + `${x+1}`).value, false);
+            if (typeof m !== 'undefined')
+            {
+                monsterList[x] = m;
+            }
+            let p = this.buildCreature(document.getElementById("p" + `${x+1}`).value, document.getElementById("pi" + `${x+1}`).value, true);
+            if (typeof p !== 'undefined')
+            {
+                playerList[x] = p; 
+            }
+        }
+        console.log(monsterList);
+        console.log(playerList);
     }
 
     validateName(name)
@@ -73,6 +85,14 @@ class Encounter
     {
         // returns true if the provided value is a number and is neither blank nor the default value
         return !isNaN(init) && (init != "" || init != "Initiative");
+    }
+
+    buildCreature(name, init, isPlayer)
+    {
+        if(this.validateInit(init) && this.validateName(name))
+        {
+            return new Creature(name, init, isPlayer);
+        }
     }
 
 }

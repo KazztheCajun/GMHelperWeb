@@ -21,7 +21,7 @@
     <script>
         function startCombat()
         {
-            let e = new Encounter();
+            let encounter = new Encounter();
         }
         function endCombat()
         {
@@ -31,39 +31,145 @@
 
 </head>
 
-<body>
-    <div class="container-fluid">
+<body class="container-fluid">
+    <!--Header-->
+    <div class="row h3 p-3">
+        <div class="col-4 text-center">
+            Player Fields
+        </div>
+        <div class="col-4 text-center">
+            Monster Fields
+        </div>
+        <div class="col-4 text-center">
+            Status Effect Creator
+        </div>
+    </div>
+
+    <!--Content -->
+    <div>
         <!-- Input Fields-->
-        <div class="row p-2">
+        <div class="row">
             <!-- Player list-->
-            <div class="col-4">
-                <ul>
-                    <li><input id="p1" type="text" value="Player" size="40"><input id="pi1" type="text" value="Initiative" size="6"></li>
-                    <li><input id="p2" type="text" value="Player" size="40"><input id="pi2" type="text" value="Initiative" size="6"></li>
-                    <li><input id="p3" type="text" value="Player" size="40"><input id="pi3" type="text" value="Initiative" size="6"></li>
-                    <li><input id="p4" type="text" value="Player" size="40"><input id="pi4" type="text" value="Initiative" size="6"></li>
-                    <li><input id="p5" type="text" value="Player" size="40"><input id="pi5" type="text" value="Initiative" size="6"></li>
-                    <li><input id="p6" type="text" value="Player" size="40"><input id="pi6" type="text" value="Initiative" size="6"></li>
-                    <li><input id="p7" type="text" value="Player" size="40"><input id="pi7" type="text" value="Initiative" size="6"></li>
-                    <li><input id="p8" type="text" value="Player" size="40"><input id="pi8" type="text" value="Initiative" size="6"></li>
-                </ul>
+            <div class="col-4 row">
+                <!-- Player Names-->
+                <div class="col">
+                    <input id="p1" type="text" placeholder="Player" class="form-control">
+                    <input id="p2" type="text" placeholder="Player" class="form-control">
+                    <input id="p3" type="text" placeholder="Player" class="form-control">
+                    <input id="p4" type="text" placeholder="Player" class="form-control">
+                    <input id="p5" type="text" placeholder="Player" class="form-control">
+                    <input id="p6" type="text" placeholder="Player" class="form-control">
+                    <input id="p7" type="text" placeholder="Player" class="form-control">
+                    <input id="p8" type="text" placeholder="Player" class="form-control">
+                </div>
+                <!-- Player Inits-->
+                <div class="col-3">
+                    <input id="pi1" type="text" placeholder="Initiative" class="form-control">
+                    <input id="pi2" type="text" placeholder="Initiative" class="form-control">
+                    <input id="pi3" type="text" placeholder="Initiative" class="form-control">
+                    <input id="pi4" type="text" placeholder="Initiative" class="form-control">
+                    <input id="pi5" type="text" placeholder="Initiative" class="form-control">
+                    <input id="pi6" type="text" placeholder="Initiative" class="form-control">
+                    <input id="pi7" type="text" placeholder="Initiative" class="form-control">
+                    <input id="pi8" type="text" placeholder="Initiative" class="form-control">
+                </div>
             </div>
 
             <!-- Monster list-->
             <div class="col-4">
-                <ul>
-                    <li><input id="m1" type="text" value="Monster" size="30"><input id="mi1" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
-                    <li><input id="m2" type="text" value="Monster" size="30"><input id="mi2" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
-                    <li><input id="m3" type="text" value="Monster" size="30"><input id="mi3" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
-                    <li><input id="m4" type="text" value="Monster" size="30"><input id="mi4" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
-                    <li><input id="m5" type="text" value="Monster" size="30"><input id="mi5" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
-                    <li><input id="m6" type="text" value="Monster" size="30"><input id="mi6" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
-                    <li><input id="m7" type="text" value="Monster" size="30"><input id="mi7" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
-                    <li><input id="m8" type="text" value="Monster" size="30"><input id="mi8" type="text" value="Initiative" size="6"><input type="text" value="HP" size="4"></li>
-                </ul>
+                <div class="row">
+                    <!-- Monster Names-->
+                    <div class="col-6">
+                        <input id="m1" type="text" placeholder="Monster" class="form-control">
+                        <input id="m2" type="text" placeholder="Monster" class="form-control">
+                        <input id="m3" type="text" placeholder="Monster" class="form-control">
+                        <input id="m4" type="text" placeholder="Monster" class="form-control">
+                        <input id="m5" type="text" placeholder="Monster" class="form-control">
+                        <input id="m6" type="text" placeholder="Monster" class="form-control">
+                        <input id="m7" type="text" placeholder="Monster" class="form-control">
+                        <input id="m8" type="text" placeholder="Monster" class="form-control">
+                    </div>
+                    <!-- Monster Inits-->
+                    <div class="col-3">
+                        <input id="mi1" type="text" placeholder="Initiative" class="form-control">
+                        <input id="mi2" type="text" placeholder="Initiative" class="form-control">
+                        <input id="mi3" type="text" placeholder="Initiative" class="form-control">
+                        <input id="mi4" type="text" placeholder="Initiative" class="form-control">
+                        <input id="mi5" type="text" placeholder="Initiative" class="form-control">
+                        <input id="mi6" type="text" placeholder="Initiative" class="form-control">
+                        <input id="mi7" type="text" placeholder="Initiative" class="form-control">
+                        <input id="mi8" type="text" placeholder="Initiative" class="form-control">
+                    </div>
+                    <!-- Monster HPs-->
+                    <div class="col">
+                        <div class="input-group">
+                            <input type="text" placeholder="HP" class="form-control">
+                            <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
+                                <input class="form-check-input" type="checkbox" id="d1">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="HP" class="form-control">
+                            <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
+                                <input class="form-check-input" type="checkbox" id="d2">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="HP" class="form-control">
+                            <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
+                                <input class="form-check-input" type="checkbox" id="d3">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="HP" class="form-control">
+                            <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
+                                <input class="form-check-input" type="checkbox" id="d4">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="HP" class="form-control">
+                            <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
+                                <input class="form-check-input" type="checkbox" id="d5">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="HP" class="form-control">
+                            <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
+                                <input class="form-check-input" type="checkbox" id="d6">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="HP" class="form-control">
+                            <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
+                                <input class="form-check-input" type="checkbox" id="d7">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" placeholder="HP" class="form-control">
+                            <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
+                                <input class="form-check-input" type="checkbox" id="d8">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="col">
+            <!-- Status Effect creator-->
+            <div class="col-4" style="border: black 1px solid;">
+                <div class="row justify-content-center m-2">
+                    <input class="form-control" id="affectText" placeholder="Enter a status effect here..."></input>
+                </div>
+                <div class="row input-group m-1">
+                    <input class="form-control" type="text" placeholder="That lasts for this many rounds...">
+                    <input class="form-control" type="text" data-bs-toggle="dropdown" placeholder="Affecting which Player or Monster...">
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                    </ul>
+                </div>
+                
                 Something here --------------------------------------------------------------------------------------------------------
             </div>
         </div>
