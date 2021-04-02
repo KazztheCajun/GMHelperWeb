@@ -2,6 +2,8 @@ let monsterList = [];
 let playerList = [];
 const initList = document.getElementById("initList");
 const roundBox = document.getElementById("rounds");
+const effectTargetList = document.getElementById("effectTargetDropdown");
+const effectTargetBox = document.getElementById("effectTarget");
 
 class Encounter
 {
@@ -9,7 +11,7 @@ class Encounter
     #round;
     #turn;
     #current;
-    #inCombat
+    #inCombat;
 
     constructor()
     {
@@ -55,6 +57,11 @@ class Encounter
             this.#round = 0;
             this.#inCombat = false;
             clearList();
+    }
+
+    setEffectTarget(text)
+    {
+        effectTargetBox.value = text;
     }
 
     removeMonster()
@@ -107,7 +114,7 @@ class Encounter
     {
         for (let x = 1; x <= 8; x++)
         {
-            let m = [document.getElementById("m" + `${x}`), document.getElementById("mi" + `${x}`), false, document.getElementById("d" + `${x}`)];
+            let m = [document.getElementById("m" + `${x}`), document.getElementById("mi" + `${x}`), false, document.getElementById("d" + `${x}`), document.getElementById("hp" + `${x}`)];
             if (typeof m !== 'undefined')
             {
                 monsterList[x-1] = m;
@@ -162,6 +169,7 @@ class Encounter
     draw()
     {
         clearList();
+        drawEffectTargetList();
         drawRound(this.#round);
         drawList();
     }
