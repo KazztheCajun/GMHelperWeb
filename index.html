@@ -21,11 +21,19 @@
     <script>
         function startCombat()
         {
-            let encounter = new Encounter();
+            encounter.startCombat();
+        }
+        function updateCombat()
+        {
+            encounter.updateCombat();
         }
         function endCombat()
         {
-            document.getElementById("initList").innerHTML = "";
+            encounter.endCombat();
+        }
+        function remove()
+        {
+            encounter.removeMonster();
         }
     </script>
 
@@ -105,49 +113,49 @@
                         <div class="input-group">
                             <input type="text" placeholder="HP" class="form-control">
                             <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
-                                <input class="form-check-input" type="checkbox" id="d1">
+                                <input class="form-check-input" type="checkbox" id="d1"onclick="remove()">
                             </div>
                         </div>
                         <div class="input-group">
                             <input type="text" placeholder="HP" class="form-control">
                             <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
-                                <input class="form-check-input" type="checkbox" id="d2">
+                                <input class="form-check-input" type="checkbox" id="d2"onclick="remove()">
                             </div>
                         </div>
                         <div class="input-group">
                             <input type="text" placeholder="HP" class="form-control">
                             <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
-                                <input class="form-check-input" type="checkbox" id="d3">
+                                <input class="form-check-input" type="checkbox" id="d3"onclick="remove()">
                             </div>
                         </div>
                         <div class="input-group">
                             <input type="text" placeholder="HP" class="form-control">
                             <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
-                                <input class="form-check-input" type="checkbox" id="d4">
+                                <input class="form-check-input" type="checkbox" id="d4"onclick="remove()">
                             </div>
                         </div>
                         <div class="input-group">
                             <input type="text" placeholder="HP" class="form-control">
                             <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
-                                <input class="form-check-input" type="checkbox" id="d5">
+                                <input class="form-check-input" type="checkbox" id="d5"onclick="remove()">
                             </div>
                         </div>
                         <div class="input-group">
                             <input type="text" placeholder="HP" class="form-control">
                             <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
-                                <input class="form-check-input" type="checkbox" id="d6">
+                                <input class="form-check-input" type="checkbox" id="d6"onclick="remove()">
                             </div>
                         </div>
                         <div class="input-group">
                             <input type="text" placeholder="HP" class="form-control">
                             <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
-                                <input class="form-check-input" type="checkbox" id="d7">
+                                <input class="form-check-input" type="checkbox" id="d7"onclick="remove()">
                             </div>
                         </div>
                         <div class="input-group">
                             <input type="text" placeholder="HP" class="form-control">
                             <div class="input-group-text" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Check when dead">
-                                <input class="form-check-input" type="checkbox" id="d8">
+                                <input class="form-check-input" type="checkbox" id="d8" onclick="remove()">
                             </div>
                         </div>
                     </div>
@@ -176,14 +184,15 @@
         <!-- Input Buttons-->
         <div class="row p-2">
             <input class="col" type="button" value="Start Combat" onclick="startCombat()">
-            <input class="col" type="button" value="Update Combat">
+            <input class="col" type="button" value="Update Combat" onclick="updateCombat()">
             <input class="col" type="button" value="End Combat" onclick="endCombat()">
         </div>
         <hr>
         <!-- Init List element-->
-        <div class="row col-3 text-center justify-content-center">
+        <div class="row col-4 text-center justify-content-center">
             <h2>Initiative List:</h2>
             <div class="init-box">
+                <h4 id="rounds"></h4>
                 <ol id="initList"></ol>
             </div>
         </div>
@@ -191,6 +200,7 @@
     <!-- Bootstrap Bundle with Popper -->
 	<script src="scripts/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="scripts/Creature.js"></script>
+    <script src="scripts/EncounterView.js"></script>
     <script src="scripts/Encounter.js"></script>
 
 </body>

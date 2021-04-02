@@ -1,28 +1,76 @@
 let monsterList = [];
 let playerList = [];
-const initList = document.getElementById("initList");;
+const initList = document.getElementById("initList");
+const roundBox = document.getElementById("rounds");
 
 class Encounter
 {
     #creatureList;
     #round;
+    #turn;
     #current;
+    #inCombat
 
     constructor()
     {
         this.#round = 0;
+        this.#creatureList = [];
+        this.getFeilds();
+        this.#inCombat = false;
+    }
+
+    startCombat()
+    {
+        this.#round = 1;
+        this.#turn = 0;
         this.populateList();
-        this.#creatureList.sort(Creature.compare);
-        console.log(this.#creatureList);
-        this.#current = this.#creatureList[0];
-        this.drawList();   
+        this.#creatureList.sort(Creature.compareInit);
+        this.#current = this.#creatureList[this.#turn];
+        this.#inCombat = true;
+        this.draw();
+    }
+
+    updateCombat()
+    {
+        if (this.#inCombat)
+        {
+            this.#turn++;
+            // get list items and sort
+            this.populateList();
+            this.#creatureList.sort(Creature.compareInit);
+            // if the result is larger than the list, start new round
+            if (this.#turn >= this.#creatureList.length)
+            {
+                this.#turn = 0;
+                this.#round++;
+            }
+            this.#current = this.#creatureList[this.#turn];
+            this.draw();
+        }
+    }
+
+    endCombat()
+    {
+            this.#creatureList = [];
+            this.#round = 0;
+            this.#inCombat = false;
+            clearList();
+    }
+
+    removeMonster()
+    {
+        if (this.#inCombat)
+        {
+            this.populateList();
+            this.#creatureList.sort(Creature.compareInit);
+            this.#current = this.#creatureList[this.#turn];
+            this.draw();
+        }
     }
 
     populateList()
     {
         this.#creatureList = [];
-        this.clearList();
-        this.getFeildValues();
         monsterList.forEach(this.addCreature, this);
         playerList.forEach(this.addCreature, this);
         console.log(this.#creatureList);
@@ -30,69 +78,94 @@ class Encounter
 
     addCreature = function(element)
     {
-        console.log(element);
-        this.#creatureList.push(element);
-    }
-
-    drawList()
-    {
-        for (let i = 0; i < this.#creatureList.length; i++)
+        let test = this.buildCreature(element[0].value, element[1].value, element[2], element[3]);
+        if (typeof test !== "undefined")
         {
-            let t = this.#creatureList[i]
-            if (this.#current === t)
+        //    console.log(test);
+            // if player just add to list
+            if (element[2])
             {
-                initList.innerHTML += "<li>" + `${t.toString()}` + "    <-- </li>";
+                this.#creatureList.push(test);
             }
             else
             {
-                initList.innerHTML += "<li>" + `${t.toString()}` + "</li>";
+                // if monster, check if alive before adding to list
+                if (!element[3].checked)
+                {
+                    this.#creatureList.push(test);
+                }
+                else
+                {
+                    console.log(`${test} is dead.`);
+                }
             }
             
         }
     }
 
-    clearList()
+    getFeilds()
     {
-        initList.innerHTML = "";
-    }
-
-    getFeildValues()
-    {
-        for (let x = 0; x < 8; x++)
+        for (let x = 1; x <= 8; x++)
         {
-            let m = this.buildCreature(document.getElementById("m" + `${x+1}`).value, document.getElementById("mi" + `${x+1}`).value, false);
+            let m = [document.getElementById("m" + `${x}`), document.getElementById("mi" + `${x}`), false, document.getElementById("d" + `${x}`)];
             if (typeof m !== 'undefined')
             {
-                monsterList[x] = m;
+                monsterList[x-1] = m;
             }
-            let p = this.buildCreature(document.getElementById("p" + `${x+1}`).value, document.getElementById("pi" + `${x+1}`).value, true);
+            else
+            {
+                console.error(`Unexpected Error getting Monster Input Field #${x}.`);
+            }
+            let p = [document.getElementById("p" + `${x}`), document.getElementById("pi" + `${x}`), true, null];
             if (typeof p !== 'undefined')
             {
-                playerList[x] = p; 
+                playerList[x-1] = p; 
+            }
+            else
+            {
+                console.error(`Unexpected Error getting Player Input Field #${x}.`);
             }
         }
-        console.log(monsterList);
-        console.log(playerList);
+        
     }
 
-    validateName(name)
+    buildCreature(title, init, isPlayer, isDead)
+    {
+        if(this.validateInit(init) && this.validateName(title))
+        {
+            return new Creature(title, init, isPlayer, isDead);
+        }
+    }
+
+    validateName(title)
     {
         // returns true if string is neither blank nor a default value
-        return name != "" || name != "Monster" || name != "Player";
+        return title != "" && title != "Monster" && title != "Player";
     }
 
     validateInit(init)
     {
         // returns true if the provided value is a number and is neither blank nor the default value
-        return !isNaN(init) && (init != "" || init != "Initiative");
+        return !isNaN(init) && (init != "" && init != "Initiative");
     }
 
-    buildCreature(name, init, isPlayer)
+    getCreatures()
     {
-        if(this.validateInit(init) && this.validateName(name))
-        {
-            return new Creature(name, init, isPlayer);
-        }
+        return this.#creatureList;
     }
 
+    getCurrent()
+    {
+        return this.#current;
+    }
+
+    draw()
+    {
+        clearList();
+        drawRound(this.#round);
+        drawList();
+    }
 }
+
+// variable to hold the encounter
+var encounter = new Encounter();
