@@ -4,6 +4,10 @@ const initList = document.getElementById("initList");
 const roundBox = document.getElementById("rounds");
 const effectTargetList = document.getElementById("effectTargetDropdown");
 const effectTargetBox = document.getElementById("effectTarget");
+const effectTextBox = document.getElementById("effectText");
+const effectDurationBox = document.getElementById("effectDuration");
+const currentEffectList = document.getElementById("effectList");
+const currentCreatureBox = document.getElementById("currentCreature");
 
 class Encounter
 {
@@ -47,8 +51,30 @@ class Encounter
                 this.#round++;
             }
             this.#current = this.#creatureList[this.#turn];
+            this.updateEffects();
             this.draw();
         }
+    }
+
+    updateEffects()
+    {
+        console.log(this.#creatureList);
+        this.#creatureList.forEach((c) =>
+        {
+            c.updateEffects();
+        });
+        console.log(this.#creatureList);
+    }
+
+    addNewEffect()
+    {
+        this.#creatureList.forEach(c =>
+            {
+                if (c.toString() == effectTargetBox.value)
+                {
+                    c.newEffect(effectTextBox.value, effectDurationBox.value);
+                }
+            });
     }
 
     endCombat()
@@ -80,7 +106,6 @@ class Encounter
         this.#creatureList = [];
         monsterList.forEach(this.addCreature, this);
         playerList.forEach(this.addCreature, this);
-        console.log(this.#creatureList);
     }
 
     addCreature = function(element)
@@ -172,6 +197,7 @@ class Encounter
         drawEffectTargetList();
         drawRound(this.#round);
         drawList();
+        drawCurrentEffects();
     }
 }
 

@@ -47,6 +47,10 @@
         {
             clearMonsterList();
         }
+        function addEffect()
+        {
+            encounter.addNewEffect();
+        }
     </script>
 
 </head>
@@ -65,12 +69,13 @@
         </div>
     </div>
 
-    <!--Content -->
-    <div>
-        <!-- Input Fields-->
-        <div class="row" >
-            <!-- Player list-->
-            <div class="col-4 row">
+    <!--User Input Area -->
+    
+    <div class="row" >
+        <!-- Left Column-->
+        <div class="col-4">
+            <!-- PLayer Fields-->
+            <div class="row">
                 <!-- Player Names-->
                 <div class="col">
                     <input id="p1" type="text" placeholder="Player" class="form-control">
@@ -93,13 +98,25 @@
                     <input id="pi7" type="text" placeholder="Initiative" class="form-control">
                     <input id="pi8" type="text" placeholder="Initiative" class="form-control">
                 </div>
-                <div>
-                    <button class="m-1 w-50 btn btn-secondary" onclick="clearPlayers()"> Clear Players </button>
+            </div>
+            <!-- Input Buttons-->
+            <div class="d-flex my-2 px-3 justify-content-center">
+                <button class="m-1 w-50 btn btn-secondary" onclick="clearMonsters()"> Clear Monsters </button>
+                <button class="m-1 w-50 btn btn-secondary" onclick="clearPlayers()"> Clear Players </button>
+            </div>
+            <div class="row">
+                <div class="btn-group-vertical my-auto p-2 gap-4">
+                    <button class="btn btn-secondary" onclick="startCombat()"> Start Combat </button>
+                    <button class="btn btn-secondary" onclick="updateCombat()"> Next Turn </button>
+                    <button class="btn btn-secondary" onclick="endCombat()"> End Combat </button>
                 </div>
             </div>
+        </div>
 
-            <!-- Monster list-->
-            <div class="col-4 row">
+        <!-- Mid Column-->
+        <div class="col-4">
+            <!-- Monster Feilds-->
+            <div class="row">
                 <!-- Monster Names-->
                 <div class="col-6">
                     <input id="m1" type="text" placeholder="Monster" class="form-control">
@@ -173,45 +190,73 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <button class="m-1 w-50 btn btn-secondary justify-content-center" onclick="clearMonsters()"> Clear Monsters </button>
+            </div>
+            <!-- Dice Roller-->
+            <div class="row p-2">
+                <div class="btn-toolbar gap-2">
+                    <div class="btn-group me-2">
+                        <button class="btn btn-secondary"> 2 </button>
+                        <button class="btn btn-secondary"> 4 </button>
+                        <button class="btn btn-secondary"> 6 </button>
+                        <button class="btn btn-secondary"> 8 </button>
+                        <button class="btn btn-secondary"> 10 </button>
+                        <button class="btn btn-secondary"> 12 </button>
+                        <button class="btn btn-secondary"> 20 </button>
+                        <button class="btn btn-secondary"> 100 </button>
+                    </div>
+                    <div class="input-group w-25">
+                        <input type="text" class="form-control" placeholder="# to roll" title="Defaults to 1 if blank" aria-label="Number of dice" aria-describedby="btnGroupAddon">
+                      </div>
                 </div>
             </div>
-
-            <!-- Status Effect creator-->
-            <div class="col-4">
-                <div class="row p-1">
-                    <div class="row justify-content-center">
-                        <input class="form-control" id="affectText" placeholder="Enter a status effect here..."></input>
-                    </div>
-                    <div class="row input-group">
-                        <input class="form-control" type="text" placeholder="That lasts for this many rounds...">
-                        <input id="effectTarget" class="form-control" type="text" data-bs-toggle="dropdown" placeholder="Affecting whom...">
-                        <ul class="dropdown-menu text-center" id="effectTargetDropdown"></ul>
-                    </div>
-                    <button class="mt-3 btn btn-secondary"> Create Status Effect </button>
-                </div>
-                <hr class="m-2">
-                <!-- Input Buttons-->
-                <div class="row p-1 btn-group-vertical gap-4">
-                    <button class="btn btn-secondary" onclick="startCombat()"> Start Combat </button>
-                    <button class="btn btn-secondary" onclick="updateCombat()"> Next Turn </button>
-                    <button class="btn btn-secondary" onclick="endCombat()"> End Combat </button>
+            <div class="row">
+                <div class="roll-box">
+                    <p>
+                        Roll results go here..................................................
+                    </p>
                 </div>
             </div>
         </div>
-        <hr>
-        <!-- Init List element-->
-        <div class="row col-4 text-center justify-content-center">
-            <h2>Initiative List:</h2>
-            <div class="init-box">
-                <h4 id="rounds"></h4>
-                <ol id="initList"></ol>
+
+        <!-- Right Column-->
+        <div class="col-4">
+            <div class="row p-1">
+                <div class="row justify-content-center">
+                    <input class="form-control" id="effectText" placeholder="Enter a status effect here..."></input>
+                </div>
+                <div class="row input-group">
+                    <input class="form-control" type="text" id="effectDuration" placeholder="That lasts for this many rounds...">
+                    <input id="effectTarget" class="form-control" type="text" data-bs-toggle="dropdown" placeholder="Affecting whom...">
+                    <ul class="dropdown-menu text-center" id="effectTargetDropdown"></ul>
+                </div>
+                <button class="mt-3 btn btn-secondary" onclick="addEffect()"> Create Status Effect </button>
+            </div>
+            <hr class="m-2">
+            <div class="row p-2 combat-box">
+                <!-- Init List element-->
+                <div class="col text-center">
+                    <h2>Initiative List:</h2>
+                    <h4 id="rounds"></h4>
+                    <ol id="initList"></ol>
+                </div>
+                <!--Status Effect display element-->
+                <div class="col">
+                    <h2 class="text-center">Active Effects:</h2>
+                    <h4 id="currentCreature"></h4>
+                    <ul id="effectList"></ul>
+                </div>
             </div>
         </div>
     </div>
+    <hr>
+    <!-- Map Area-->
+    <div>
+
+    </div>
+    
     <!-- Bootstrap Bundle with Popper -->
 	<script src="scripts/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="scripts/StatusEffect.js"></script>
     <script src="scripts/Creature.js"></script>
     <script src="scripts/EncounterView.js"></script>
     <script src="scripts/Encounter.js"></script>

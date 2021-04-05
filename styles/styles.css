@@ -1,6 +1,13 @@
-.init-box
+.combat-box
+{
+    height: 500px;
+}
+
+.roll-box
 {
     border: 1px solid black;
-    width: 75%;
-    height: 800px;
+    height: 300px;
+    width: 100%;
+    overflow-wrap: break-word;
+    overflow-y: scroll;
 }

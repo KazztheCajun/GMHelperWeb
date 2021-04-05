@@ -4,6 +4,7 @@ class Creature
     #init;
     #isPlayer;
     #isDead;
+    #effects;
 
     constructor(n, i, p, d)
     {
@@ -11,6 +12,14 @@ class Creature
         this.#init = parseInt(i);
         this.#isPlayer = p;
         this.#isDead = d;
+        this.#effects = [];
+    }
+
+    newEffect(text, duration)
+    {
+        let temp = new StatusEffect(text, duration);
+        console.log(this.#effects.push(temp));
+        console.log(temp);
     }
 
     isDead()
@@ -26,6 +35,26 @@ class Creature
     getInit()
     {
         return this.#init;
+    }
+
+    getEffects()
+    {
+        return this.#effects;
+    }
+
+    updateEffects()
+    {
+        this.#effects.forEach( e =>
+            {
+                e.update();
+                if (e.isDone())
+                {
+                    // remove effect from list if it is done
+                    this.#effects = this.#effects.filter(x => x !== e);
+                    console.log(`${e.toString()} is done.`)
+                }
+            }
+        )
     }
 
     toString()

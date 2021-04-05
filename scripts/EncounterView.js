@@ -36,6 +36,15 @@ function drawRound(r)
     roundBox.innerHTML = `Round: ${r}`;
 }
 
+function drawCurrentEffects()
+{
+    currentCreatureBox.innerHTML = `${encounter.getCurrent()} is effected by:`
+    encounter.getCurrent().getEffects().forEach( e =>
+        {
+            currentEffectList.innerHTML += `<li> ${e.toString()} </li>`;
+        });
+}
+
 function clearPlayerList()
 {
     playerList.forEach((x) => 
