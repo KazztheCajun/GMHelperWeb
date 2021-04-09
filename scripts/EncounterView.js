@@ -90,6 +90,7 @@ function clearList()
 {
     effectTargetList.innerHTML = "";
     currentEffectList.innerHTML = "";
+    currentCreatureBox.innerHTML = "";
     roundBox.innerHTML = ``;
     initList.innerHTML = "";
 }
