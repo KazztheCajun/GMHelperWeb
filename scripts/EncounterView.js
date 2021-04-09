@@ -84,6 +84,7 @@ function clearMonsterList()
 function clearRolls()
 {
     rollBox.innerHTML = "";
+    console.log("Clearing Roll History");
 }
 
 function clearList()
