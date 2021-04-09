@@ -14,4 +14,4 @@ The HP fields can be used to track HP.  Simply click in the field to edit it.
 
 The checkboxes can be used to remove a monster from the initiative list, however, it should be noted that unchecking does not reinstate that monster back into combat.  That functionality is planned for a future update.  I also plan to have monsters 'hidden' so they can be secretly added to the initiative list, but that will be in the Map (see below) update most likely.
 
-The Status Effect Creator can be used to give your players or monsters a buff/debuff and when it is thier turn, it will be listed in the "X is effected by:" area.
+The Status Effect Creator can be used to give your players or monsters a buff/debuff and on thier turn it will be listed in the "X is effected by:" area.
