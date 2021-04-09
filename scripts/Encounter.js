@@ -105,8 +105,9 @@ class Encounter
     populateList()
     {
         this.#creatureList = [];
-        monsterList.forEach(this.addCreature, this);
         playerList.forEach(this.addCreature, this);
+        monsterList.forEach(this.addCreature, this);
+        
     }
 
     addCreature = function(element)
