@@ -8,6 +8,7 @@ const effectTextBox = document.getElementById("effectText");
 const effectDurationBox = document.getElementById("effectDuration");
 const currentEffectList = document.getElementById("effectList");
 const currentCreatureBox = document.getElementById("currentCreature");
+const rollBox = document.getElementById("rolls");
 
 class Encounter
 {

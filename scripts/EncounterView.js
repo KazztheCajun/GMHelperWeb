@@ -45,6 +45,19 @@ function drawCurrentEffects()
         });
 }
 
+function drawDiceRoll(s, num)
+{
+    let r = rollDice(s, num);
+    console.log(r);
+    result = 0;
+    r.forEach((x) =>
+    {
+        result += x;
+    });
+
+    rollBox.innerHTML += `<p> ${r} = ${result} </p>`
+}
+
 function clearPlayerList()
 {
     playerList.forEach((x) => 
@@ -66,6 +79,11 @@ function clearMonsterList()
             x[4].value = "";
         });
     })
+}
+
+function clearRolls()
+{
+    rollBox.innerHTML = "";
 }
 
 function clearList()

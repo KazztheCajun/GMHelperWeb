@@ -51,6 +51,18 @@
         {
             encounter.addNewEffect();
         }
+        function diceEvent(s)
+        {
+            let n = document.getElementById("rollNumBox").value;
+            if (n == "" || n == undefined || isNaN(n))
+            {
+                drawDiceRoll(s, 1);
+            }
+            else
+            {
+                drawDiceRoll(s, n)
+            }
+        } 
     </script>
 
 </head>
@@ -103,6 +115,9 @@
             <div class="d-flex my-2 px-3 justify-content-center">
                 <button class="m-1 w-50 btn btn-secondary" onclick="clearMonsters()"> Clear Monsters </button>
                 <button class="m-1 w-50 btn btn-secondary" onclick="clearPlayers()"> Clear Players </button>
+            </div>
+            <div class="row m-2">
+                <button class="my-3 btn btn-secondary btn-lg" onclick="clearRolls()"> Clear Roll History</button>
             </div>
             <div class="row">
                 <div class="btn-group-vertical my-auto p-2 gap-4">
@@ -195,25 +210,22 @@
             <div class="row p-2">
                 <div class="btn-toolbar gap-2">
                     <div class="btn-group me-2">
-                        <button class="btn btn-secondary"> 2 </button>
-                        <button class="btn btn-secondary"> 4 </button>
-                        <button class="btn btn-secondary"> 6 </button>
-                        <button class="btn btn-secondary"> 8 </button>
-                        <button class="btn btn-secondary"> 10 </button>
-                        <button class="btn btn-secondary"> 12 </button>
-                        <button class="btn btn-secondary"> 20 </button>
-                        <button class="btn btn-secondary"> 100 </button>
+                        <button class="btn btn-secondary" onclick="diceEvent(2)"> 2 </button>
+                        <button class="btn btn-secondary" onclick="diceEvent(4)"> 4 </button>
+                        <button class="btn btn-secondary" onclick="diceEvent(6)"> 6 </button>
+                        <button class="btn btn-secondary" onclick="diceEvent(8)"> 8 </button>
+                        <button class="btn btn-secondary" onclick="diceEvent(10)"> 10 </button>
+                        <button class="btn btn-secondary" onclick="diceEvent(12)"> 12 </button>
+                        <button class="btn btn-secondary" onclick="diceEvent(20)"> 20 </button>
+                        <button class="btn btn-secondary" onclick="diceEvent(100)"> 100 </button>
                     </div>
                     <div class="input-group w-25">
-                        <input type="text" class="form-control" placeholder="# to roll" title="Defaults to 1 if blank" aria-label="Number of dice" aria-describedby="btnGroupAddon">
+                        <input type="text" id="rollNumBox" class="form-control" placeholder="# to roll" title="Defaults to 1 if blank" aria-label="Number of dice" aria-describedby="btnGroupAddon">
                       </div>
                 </div>
             </div>
             <div class="row">
-                <div class="roll-box">
-                    <p>
-                        Roll results go here..................................................
-                    </p>
+                <div id="rolls" class="roll-box">
                 </div>
             </div>
         </div>
@@ -255,6 +267,7 @@
     
     <!-- Bootstrap Bundle with Popper -->
 	<script src="scripts/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="scripts/DiceRoller.js"></script>
     <script src="scripts/StatusEffect.js"></script>
     <script src="scripts/Creature.js"></script>
     <script src="scripts/EncounterView.js"></script>
