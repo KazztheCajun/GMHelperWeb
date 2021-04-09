@@ -1,4 +1,7 @@
-# Welcome to my handy GM Helper (Web Edition).  
+# Welcome to my handy GM Helper (Web Edition).
+
+You can find it here: http://www.cajunkalamity.com/GMHelperWeb/
+
 ## Current features:
  - Initiative list sorting
  - Turn tracking 
