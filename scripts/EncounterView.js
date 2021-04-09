@@ -71,6 +71,7 @@ function clearMonsterList()
 function clearList()
 {
     effectTargetList.innerHTML = "";
+    currentEffectList.innerHTML = "";
     roundBox.innerHTML = ``;
     initList.innerHTML = "";
 }

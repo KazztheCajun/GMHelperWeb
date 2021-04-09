@@ -24,7 +24,14 @@ class Creature
 
     isDead()
     {
-        return this.#isDead;
+        if (this.#isPlayer)
+        {
+            return this.#isDead;
+        }
+        else
+        {
+            return this.#isDead.checked;
+        }
     }
 
     isPlayer()
@@ -47,14 +54,10 @@ class Creature
         this.#effects.forEach( e =>
             {
                 e.update();
-                if (e.isDone())
-                {
-                    // remove effect from list if it is done
-                    this.#effects = this.#effects.filter(x => x !== e);
-                    console.log(`${e.toString()} is done.`)
-                }
             }
         )
+
+        this.#effects = this.#effects.filter(e => !e.isDone());
     }
 
     toString()

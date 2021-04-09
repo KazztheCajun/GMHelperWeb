@@ -16,7 +16,7 @@ class StatusEffect
 
     isDone()
     {
-        return duration <= 0;
+        return this.#duration <= 0;
     }
 
     toString()

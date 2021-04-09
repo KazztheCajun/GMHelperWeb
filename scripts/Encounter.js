@@ -41,29 +41,24 @@ class Encounter
         if (this.#inCombat)
         {
             this.#turn++;
-            // get list items and sort
-            this.populateList();
-            this.#creatureList.sort(Creature.compareInit);
             // if the result is larger than the list, start new round
             if (this.#turn >= this.#creatureList.length)
             {
+                this.updateEffects();
                 this.#turn = 0;
                 this.#round++;
             }
             this.#current = this.#creatureList[this.#turn];
-            this.updateEffects();
             this.draw();
         }
     }
 
     updateEffects()
     {
-        console.log(this.#creatureList);
         this.#creatureList.forEach((c) =>
         {
             c.updateEffects();
         });
-        console.log(this.#creatureList);
     }
 
     addNewEffect()
@@ -94,9 +89,15 @@ class Encounter
     {
         if (this.#inCombat)
         {
-            this.populateList();
-            this.#creatureList.sort(Creature.compareInit);
-            this.#current = this.#creatureList[this.#turn];
+            this.#creatureList = this.#creatureList.filter(x => !x.isDead());
+            if (this.#creatureList.indexOf(this.#current) == -1)
+            {
+                this.#current = this.#creatureList[this.#turn];
+            }
+            else
+            {
+                this.#turn = this.#creatureList.indexOf(this.#current);
+            }
             this.draw();
         }
     }
@@ -148,7 +149,7 @@ class Encounter
             {
                 console.error(`Unexpected Error getting Monster Input Field #${x}.`);
             }
-            let p = [document.getElementById("p" + `${x}`), document.getElementById("pi" + `${x}`), true, null];
+            let p = [document.getElementById("p" + `${x}`), document.getElementById("pi" + `${x}`), true, false];
             if (typeof p !== 'undefined')
             {
                 playerList[x-1] = p; 
